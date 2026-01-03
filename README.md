@@ -32,6 +32,12 @@ scripts/new_doc.sh review "User auth flow"
 scripts/new_doc.sh decision "Auth flow exception"
 ```
 
+Create project-scoped docs under `Projects/<date>_<project>/`:
+
+```sh
+scripts/new_doc.sh --project "Landing Refresh" plan "User auth flow"
+```
+
 ## Agent Call Stubs
 
 Use scripts to create handoff docs and indicate the next agent action:
@@ -41,4 +47,33 @@ scripts/request_plan.sh "User auth flow"
 scripts/request_design.sh "User auth flow"
 scripts/request_dev.sh "User auth flow"
 scripts/request_review.sh "User auth flow"
+```
+
+Project-scoped examples:
+
+```sh
+scripts/request_plan.sh --project "Landing Refresh" "User auth flow"
+scripts/request_design.sh --project "Landing Refresh" "User auth flow"
+scripts/request_dev.sh --project "Landing Refresh" "User auth flow"
+scripts/request_review.sh --project "Landing Refresh" "User auth flow"
+```
+
+Create a full project workspace with all docs:
+
+```sh
+scripts/assign_work.sh "Landing Refresh" "User auth flow"
+```
+
+## CLI Agent Calls
+
+Run gemini-cli to produce design guidance:
+
+```sh
+scripts/run_gemini.sh docs/plans/<plan>.md docs/designs/<design>.md
+```
+
+Run claude-code to implement:
+
+```sh
+scripts/run_claude.sh docs/plans/<plan>.md docs/designs/<design>.md docs/handoffs/<dev>.md
 ```

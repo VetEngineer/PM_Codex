@@ -2,14 +2,19 @@
 set -euo pipefail
 
 if [[ ${#} -lt 1 ]]; then
-  echo "Usage: scripts/request_review.sh <title>" >&2
+  echo "Usage: scripts/request_review.sh [--project \"Project Name\"] <title>" >&2
   exit 1
 fi
 
+project_args=()
+if [[ ${1:-} == "--project" ]]; then
+  project_args=("$1" "$2")
+  shift 2
+fi
+
 title="$*"
-out="$(scripts/new_doc.sh review "$title" | tail -n1)"
+out="$(scripts/new_doc.sh "${project_args[@]}" review "$title" | tail -n1)"
 path="${out#Created: }"
 
 echo "Review doc created: $path"
 echo "Next: Codex reviews the pushed changes and records accept/reject."
-
