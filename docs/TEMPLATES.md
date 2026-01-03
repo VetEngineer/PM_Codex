@@ -2,6 +2,10 @@
 
 Use these templates for consistent handoffs.
 
+## Scripted Usage
+
+Use `scripts/new_doc.sh` to create timestamped docs in `docs/`.
+
 ## Work Request (Codex -> Team)
 
 - Title:
@@ -39,4 +43,3 @@ Use these templates for consistent handoffs.
 - Decision (accept/reject):
 - Rationale:
 - Follow-ups:
-
